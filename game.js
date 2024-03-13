@@ -10,7 +10,8 @@ $(".btn").click(function() {
     userClickedPattern.push(userChosenColor);
     
     playSound(userChosenColor);
-})
+    animatePress(userChosenColor);
+});
 
 function nextSequence() {
     let randomNumber = Math.floor(Math.random() * 4);
@@ -22,7 +23,15 @@ function nextSequence() {
     playSound(randomChosenColor);
 }
 
-function playSound(color) {
-    let sound = new Audio("sounds/" + color + ".mp3");
+function playSound(currentColor) {
+    let sound = new Audio("sounds/" + currentColor + ".mp3");
     sound.play();
+}
+
+function animatePress(currentColor) {
+    $("#" + currentColor).addClass("pressed");
+
+    setTimeout(function() {
+        $("#" + currentColor).removeClass("pressed");
+    }, 100);
 }
